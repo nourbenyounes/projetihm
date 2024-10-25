@@ -8,10 +8,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { NewsComponent } from './news/news.component';
 import { HomeComponent } from './home/home.component';
-import { ListemedComponent } from './listemed/listemed.component';
 import { FormsModule } from '@angular/forms';
-import { MedecinAddComponent } from './medecin-add/medecin-add.component';
-import { ModifComponent } from './modif/modif.component';
+
+import { TestComponent } from './test/test.component';
+import { FavComponent } from './fav/fav.component';
+import { ListeCoursComponent } from './liste-cours/liste-cours.component';
+import { CercleComponent } from './cercle/cercle.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,9 +21,11 @@ import { ModifComponent } from './modif/modif.component';
     AboutComponent,
     NewsComponent,
     HomeComponent,
-    ListemedComponent,
-    MedecinAddComponent,
-    ModifComponent,
+
+    TestComponent,
+    FavComponent,
+    ListeCoursComponent,
+    CercleComponent,
   ],
   imports: [
     BrowserModule,
