@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -18,7 +17,7 @@ pipeline {
             steps {
                 // Install project dependencies (ensure npm is installed on the Jenkins agent)
                 script {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
@@ -27,7 +26,7 @@ pipeline {
             steps {
                 // Run your unit tests (replace with your test framework command)
                 script {
-                    sh 'npm test'
+                    bat 'npm test'
                 }
             }
         }
@@ -36,7 +35,7 @@ pipeline {
             steps {
                 // Run SonarQube analysis (ensure the SonarQube plugin is installed in Jenkins)
                 script {
-                    sh '''
+                    bat '''
                         npm run sonar:scan
                     '''
                 }
@@ -47,7 +46,7 @@ pipeline {
             steps {
                 // Build your project (optional step, depending on your needs)
                 script {
-                    sh 'ng build --prod'
+                    bat 'ng build --prod'
                 }
             }
         }
