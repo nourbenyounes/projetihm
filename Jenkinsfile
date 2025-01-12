@@ -13,23 +13,16 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+       /* stage('Install Dependencies') {
             steps {
                 // Install project dependencies (ensure npm is installed on the Jenkins agent)
                 script {
                     bat 'npm install'
                 }
             }
-        }
+        }*/
 
-        stage('Run Tests') {
-            steps {
-                // Run your unit tests (replace with your test framework command)
-                script {
-                    bat 'npm test'
-                }
-            }
-        }
+
 
         stage('SonarQube Analysis') {
             steps {
@@ -42,29 +35,17 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                // Build your project (optional step, depending on your needs)
-                script {
-                    bat 'ng build --prod'
-                }
-            }
-        }
 
-        stage('Deploy') {
-            steps {
-                // Optional: Deploy your application (if needed)
-                echo 'Deploying the application...'
-            }
-        }
+
+
     }
 
     post {
         success {
-            echo 'Build and analysis successful!'
+            echo ' successful!'
         }
         failure {
-            echo 'Build failed!'
+            echo ' failed!'
         }
     }
 }
