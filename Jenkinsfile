@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        // Assure-toi que SonarScanner est configuré dans Jenkins
-        sonarQube 'sonarQube devSecOps'
+        // Utilise l'outil SonarQubeScanner pour l'analyse du code
+        sonarScanner 'SonarScanner'
     }
 
     stages {
