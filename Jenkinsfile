@@ -1,38 +1,71 @@
+
 pipeline {
     agent any
 
-    tools {
-        // Utilise l'outil SonarQubeScanner pour l'analyse du code
-        sonarScanner 'SonarScanner'
+    environment {
+        SONARQUBE = 'sonarQube devSecOps' // Define the SonarQube server (configured in Jenkins)
     }
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                echo 'Récupération du code source depuis GitHub...'
+                // Checkout the code from GitHub using the configuration in Jenkins
                 checkout scm
             }
         }
 
-        stage('Static Code Analysis - SonarQube') {
+        stage('Install Dependencies') {
             steps {
-                echo 'Analyse statique du code avec SonarQube...'
-                withSonarQubeEnv('sonarQube devSecOps') { // Nom configuré dans Jenkins
+                // Install project dependencies (ensure npm is installed on the Jenkins agent)
+                script {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Run your unit tests (replace with your test framework command)
+                script {
+                    sh 'npm test'
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                // Run SonarQube analysis (ensure the SonarQube plugin is installed in Jenkins)
+                script {
                     sh '''
-                    sonar-scanner \
-                        -Dsonar.projectKey=my-project-key \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://localhost:9000 \
-                        -Dsonar.login=$SONAR_AUTH_TOKEN
+                        npm run sonar:scan
                     '''
                 }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build your project (optional step, depending on your needs)
+                script {
+                    sh 'ng build --prod'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Optional: Deploy your application (if needed)
+                echo 'Deploying the application...'
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline terminé. Vérifiez les résultats.'
+        success {
+            echo 'Build and analysis successful!'
+        }
+        failure {
+            echo 'Build failed!'
         }
     }
 }
