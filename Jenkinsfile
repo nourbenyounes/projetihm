@@ -13,14 +13,14 @@ pipeline {
             }
         }
 
-       /* stage('Install Dependencies') {
+        stage('Install Dependencies') {
             steps {
                 // Install project dependencies (ensure npm is installed on the Jenkins agent)
                 script {
                     bat 'npm install'
                 }
             }
-        }*/
+        }
 
 
 
