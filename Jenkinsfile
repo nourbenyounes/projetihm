@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_SERVER = 'sonarQube devSecOps'
+        SONARQUBE_SERVER = 'sonarQube devSecOps' // Nom du serveur configuré dans Jenkins
+    }
 
     stages {
         stage('Checkout Code') {
@@ -28,6 +29,9 @@ pipeline {
         }
 
 
+
+
+    }
 
     post {
         always {
