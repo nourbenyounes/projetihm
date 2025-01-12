@@ -29,7 +29,7 @@ pipeline {
                 // Run SonarQube analysis (ensure the SonarQube plugin is installed in Jenkins)
                 script {
                     bat '''
-                        npm run sonar:scan
+                        sonar-scanner
                     '''
                 }
             }
